@@ -36,6 +36,7 @@ SOURCES += \
     cutter.cpp \
     widgets/DisassemblerGraphView.cpp \
     widgets/MemoryWidget.cpp \
+    widgets/DisassemblyWidget.cpp \
     utils/RichTextPainter.cpp \
     dialogs/OptionsDialog.cpp \
     dialogs/AboutDialog.cpp \
@@ -79,6 +80,7 @@ HEADERS  += \
     cutter.h \
     widgets/DisassemblerGraphView.h \
     widgets/MemoryWidget.h \
+    widgets/DisassemblyWidget.h \
     utils/RichTextPainter.h \
     utils/CachedFontMetrics.h \
     dialogs/AboutDialog.h \
@@ -123,6 +125,7 @@ HEADERS  += \
 
 FORMS    += \
     widgets/MemoryWidget.ui \
+    widgets/DisassemblyWidget.ui \
     dialogs/AboutDialog.ui \
     dialogs/AsmOptionsDialog.ui \
     dialogs/CommentsDialog.ui \

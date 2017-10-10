@@ -41,6 +41,7 @@
 #include "dialogs/NewFileDialog.h"
 
 #include "widgets/MemoryWidget.h"
+#include "widgets/DisassemblyWidget.h"
 #include "widgets/FunctionsWidget.h"
 #include "widgets/SectionsWidget.h"
 #include "widgets/CommentsWidget.h"
@@ -86,6 +87,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     core(CutterCore::getInstance()),
     memoryDock(nullptr),
+    disassemblyDock(nullptr),
     notepadDock(nullptr),
     asmDock(nullptr),
     calcDock(nullptr),
@@ -189,6 +191,9 @@ void MainWindow::initUI()
     // To use in the future when we handle more than one memory views
     // this->memoryDock->setAttribute(Qt::WA_DeleteOnClose);
     // this->add_debug_output( QString::number(this->dockList.length()) );
+
+    disassemblyDock = new DisassemblyWidget();
+    dockWidgets.push_back(disassemblyDock);
 
     // Add Sections dock panel
     this->sectionsDock = new SectionsDock(this);
@@ -741,6 +746,7 @@ void MainWindow::restoreDocks()
     addDockWidget(Qt::TopDockWidgetArea, this->dashboardDock);
     this->tabifyDockWidget(sectionsDock, this->commentsDock);
     this->tabifyDockWidget(this->dashboardDock, this->memoryDock);
+    this->tabifyDockWidget(this->dashboardDock, this->disassemblyDock);
     this->tabifyDockWidget(this->dashboardDock, this->entrypointDock);
     this->tabifyDockWidget(this->dashboardDock, this->functionsDock);
     this->tabifyDockWidget(this->dashboardDock, this->flagsDock);
@@ -777,6 +783,7 @@ void MainWindow::showDefaultDocks()
                                                entrypointDock,
                                                functionsDock,
                                                memoryDock,
+                                               disassemblyDock,
                                                commentsDock,
                                                stringsDock,
                                                importsDock,

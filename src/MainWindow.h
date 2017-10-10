@@ -11,6 +11,7 @@ class CutterCore;
 class DockWidget;
 class Omnibar;
 class MemoryWidget;
+class DisassemblyWidget;
 class Notepad;
 class SideBar;
 class Highlighter;
@@ -174,6 +175,7 @@ private:
     Omnibar          *omnibar;
     SideBar          *sideBar;
     MemoryWidget     *memoryDock;
+    DisassemblyWidget *disassemblyDock;
     Notepad          *notepadDock;
 
     bool doLock;
