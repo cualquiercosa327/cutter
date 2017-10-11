@@ -39,7 +39,7 @@ MemoryWidget::MemoryWidget() :
 
     this->last_fcn = "entry0";
     this->last_graph_fcn = 0; //"";
-    this->last_hexdump_fcn = 0; //"";
+    this->last_hexdump_fcn = RVA_INVALID; //"";
 
     disasm_top_offset = 0;
     next_disasm_top_offset = 0;
@@ -1748,13 +1748,13 @@ void MemoryWidget::updateViews(RVA offset)
         // Disasm
         this->refreshDisasm();
     }
-    else if (index == 1)
+    else if (index == 2)
     {
         // Hex
         if (this->last_hexdump_fcn != cursor_addr)
         {
-            this->refreshHexdump(cursor_addr_string);
             this->last_hexdump_fcn = cursor_addr;
+            this->refreshHexdump(cursor_addr_string);
         }
     }
     // TODO WTF
