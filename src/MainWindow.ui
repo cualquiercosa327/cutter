@@ -258,6 +258,7 @@ border-top: 0px;
     <addaction name="actionComments"/>
     <addaction name="actionNotepad"/>
     <addaction name="actionConsole"/>
+    <addaction name="actionJupyter"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -1039,6 +1040,14 @@ QToolButton:pressed {
   <action name="actionAnalyze">
    <property name="text">
     <string>Analyze</string>
+   </property>
+  </action>
+  <action name="actionJupyter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Jupyter</string>
    </property>
   </action>
  </widget>

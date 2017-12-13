@@ -64,6 +64,7 @@
 #include "widgets/EntrypointWidget.h"
 #include "dialogs/SaveProjectDialog.h"
 #include "widgets/ClassesWidget.h"
+#include "widgets/JupyterWidget.h"
 
 // graphics
 #include <QGraphicsEllipseItem>
@@ -239,6 +240,7 @@ void MainWindow::initUI()
     ADD_DOCK(CommentsWidget, commentsDock, ui->actionComments);
     ADD_DOCK(StringsWidget, stringsDock, ui->actionStrings);
     ADD_DOCK(FlagsWidget, flagsDock, ui->actionFlags);
+    ADD_DOCK(JupyterWidget, jupyterDock, ui->actionJupyter);
     ADD_DOCK(Notepad, notepadDock, ui->actionNotepad);
     ADD_DOCK(Dashboard, dashboardDock, ui->actionDashboard);
     ADD_DOCK(SdbDock, sdbDock, ui->actionSDBBrowser);
@@ -548,6 +550,7 @@ void MainWindow::restoreDocks()
     tabifyDockWidget(dashboardDock, symbolsDock);
     tabifyDockWidget(dashboardDock, notepadDock);
     tabifyDockWidget(dashboardDock, classesDock);
+    tabifyDockWidget(dashboardDock, jupyterDock);
 
     updateDockActionsChecked();
 }
@@ -587,7 +590,8 @@ void MainWindow::showDefaultDocks()
                                                 sidebarDock,
                                                 hexdumpDock,
                                                 pseudocodeDock,
-                                                dashboardDock
+                                                dashboardDock,
+                                                jupyterDock
                                               };
 
     for (auto w : dockWidgets)
