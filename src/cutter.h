@@ -168,6 +168,18 @@ struct RBinPluginDescription
     QString type;
 };
 
+struct ClassDescription
+{
+    QString name;
+    RVA addr;
+    ut64 index;
+};
+
+struct MethodDescription
+{
+
+};
+
 struct DisassemblyLine
 {
     RVA offset;
