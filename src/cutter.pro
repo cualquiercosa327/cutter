@@ -88,7 +88,8 @@ SOURCES += \
     widgets/QuickFilterView.cpp \
     widgets/ClassesWidget.cpp \
     utils/JupyterConnection.cpp \
-    widgets/JupyterWidget.cpp
+    widgets/JupyterWidget.cpp \
+    utils/CommandServer.cpp
 
 HEADERS  += \
     cutter.h \
@@ -147,7 +148,8 @@ HEADERS  += \
     widgets/QuickFilterView.h \
     widgets/ClassesWidget.h \
     utils/JupyterConnection.h \
-    widgets/JupyterWidget.h
+    widgets/JupyterWidget.h \
+    utils/CommandServer.h
 
 FORMS    += \
     dialogs/AboutDialog.ui \

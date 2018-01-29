@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
     }
 
 
+    QWidget *widget;
     if (args.empty())
     {
         if (analLevelSpecified)
@@ -98,15 +99,15 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        NewFileDialog *n = new NewFileDialog();
-        n->setAttribute(Qt::WA_DeleteOnClose);
-        n->show();
+        widget = new NewFileDialog();
+        widget->show();
     }
     else // filename specified as positional argument
     {
-        MainWindow *main = new MainWindow();
-        main->openNewFile(args[0], analLevelSpecified ? analLevel : -1);
+        widget = new MainWindow();
+        ((MainWindow*)widget)->openNewFile(args[0], analLevelSpecified ? analLevel : -1);
     }
+    widget->setAttribute(Qt::WA_DeleteOnClose);
 
     // Hack to make it work with AppImage
 #ifdef APPIMAGE
