@@ -41,6 +41,11 @@ JupyterConnection::~JupyterConnection()
 
         Py_Finalize();
     }
+
+    if (pythonHome)
+    {
+        PyMem_RawFree(pythonHome);
+    }
 }
 
 
@@ -50,11 +55,10 @@ void JupyterConnection::initPython()
     // Executable is in appdir/bin
     auto pythonHomeDir = QDir(QCoreApplication::applicationDirPath());
     pythonHomeDir.cdUp();
-    QString pythonHome = pythonHomeDir.absolutePath();
-    qInfo() << "Setting PYTHONHOME=" << pythonHome << " for AppImage.";
-    wchar_t *pythonHomeW = Py_DecodeLocale(pythonHome.toLocal8Bit().constData(), nullptr);
-    Py_SetPythonHome(pythonHomeW);
-    PyMem_RawFree(pythonHomeW);
+    QString pythonHomeStr = pythonHomeDir.absolutePath();
+    qInfo() << "Setting PYTHONHOME =" << pythonHomeStr << " for AppImage.";
+    pythonHome = Py_DecodeLocale(pythonHomeStr.toLocal8Bit().constData(), nullptr);
+    Py_SetPythonHome(pythonHome);
 #endif
 
     PyImport_AppendInittab("cutter", &PyInit_api);
