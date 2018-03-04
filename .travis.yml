@@ -80,7 +80,7 @@ script:
   - cd build
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         if [[ "$BUILD_SYSTEM" == "qmake" ]]; then
-            PKG_CONFIG_PATH="$CUSTOM_PYTHON_PREFIX/lib/pkgconfig" qmake PREFIX=/usr APPIMAGE=1 ../src && make -j4;
+            PKG_CONFIG_PATH="$CUSTOM_PYTHON_PREFIX/lib/pkgconfig" qmake CONFIG+=CUTTER_ENABLE_JUPYTER CONFIG+=CUTTER_ENABLE_QTWEBENGINE PREFIX=/usr APPIMAGE=1 ../src && make -j4;
         elif [[ "$BUILD_SYSTEM" == "qmake" ]]; then
             cmake ../src && make -j4;
        fi
