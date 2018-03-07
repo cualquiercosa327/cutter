@@ -53,6 +53,10 @@ install:
 after_success:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then  
       macdeployqt Cutter.app &&
+
+      install_name_tool `otool -L Cutter.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess | sed -n "s/^[[:blank:]]*\(\/usr\/local\/Cellar[^[:blank:]]*\(Qt[A-Za-z]*\.framework[^[:blank:]]*\)\) (.*$/-change \1 @executable_path\/..\/..\/..\/..\/..\/..\/..\/\2/p"` Cutter.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess &&
+      ln -s ../../../../../.. Cutter.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/Frameworks &&
+
       mkdir -p Cutter.app/Contents/Frameworks &&
       cp -a "$PYTHON_FRAMEWORK_DIR/Python.framework" Cutter.app/Contents/Frameworks/ &&
       install_name_tool -change `otool -L Cutter.app/Contents/MacOS/Cutter | sed -n "s/^[[:blank:]]*\([^[:blank:]]*Python\) (.*$/\1/p"` @executable_path/../Frameworks/Python.framework/Versions/Current/Python Cutter.app/Contents/MacOS/Cutter &&
