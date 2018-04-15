@@ -8,6 +8,7 @@
 #include <QTextCodec>
 #include <QStringList>
 #include <QProcess>
+#include <QDir>
 
 #ifdef CUTTER_ENABLE_JUPYTER
 #include "utils/JupyterConnection.h"
@@ -62,6 +63,18 @@ CutterApplication::CutterApplication(int &argc, char **argv) : QApplication(argc
         if (msg.exec() == QMessageBox::No)
             exit(1);
     }
+
+#if defined(APPIMAGE) || defined(MACOS_R2_BUNDLED)
+    auto prefix = QDir(QCoreApplication::applicationDirPath());
+#   ifdef APPIMAGE
+        // Executable is in appdir/bin
+        prefix.cdUp();
+        qInfo() << "Setting r2 prefix =" << prefix.absolutePath() << " for AppImage.";
+        r_sys_prefix(prefix.absolutePath().toLocal8Bit().constData());
+#   else // MACOS_R2_BUNDLED
+#       warning TODO: MACOS_R2_BUNDLED
+#   endif
+#endif
 
 #ifdef CUTTER_ENABLE_JUPYTER
     if (cmd_parser.isSet(pythonHomeOption)) {
