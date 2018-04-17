@@ -77,7 +77,14 @@ after_success:
       "$TRAVIS_BUILD_DIR/scripts/appbundle_patch_qtwebengine.sh" Cutter.app &&
       "$TRAVIS_BUILD_DIR/scripts/appbundle_embed_python.sh" "$PYTHON_FRAMEWORK_DIR/Python.framework" Cutter.app Cutter.app/Contents/MacOS/Cutter &&
       mkdir -p Cutter.app/Contents/Resources/r2/share &&
+      echo "------------------------------" &&
+      echo "Stuff in /usr/local/share/radare2" && 
+      ls -l /usr/local/share/radare2 &&
       cp -a /usr/local/share/radare2 Cutter.app/Contents/Resources/r2/share/ &&
+      echo "------------------------------" &&
+      echo "Resulting stuff in Cutter.app/Contents/Resources/r2/share/" &&
+      ls -l Cutter.app/Contents/Resources/r2/share/ &&
+      echo "------------------------------" &&
       mkdir image && cp -a Cutter.app image/ &&
       hdiutil create -srcfolder image -volname Cutter -fs HFS+ Cutter.dmg &&
       export FILE_TO_UPLOAD="Cutter.dmg"
